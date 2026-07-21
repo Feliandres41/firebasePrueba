@@ -1,8 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_practica/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import './screens/screens.dart';
 
 import 'firebase_options.dart';
 
@@ -18,8 +17,8 @@ void main() async {
   //   "edad":"1"
   // });
   // FirebaseAuth.instance.createUserWithEmailAndPassword(email: "zackxzaft@gmail.com", password: "123456789");
-  final a = await FirebaseAuth.instance.signInWithEmailAndPassword(email: "zackxzaft@gmail.com", password: "123456789");
-  print(a.user!);
+  // final a = await FirebaseAuth.instance.signInWithEmailAndPassword(email: "zackxzaft@gmail.com", password: "123456789");
+  // print(a.user!);
   
 
   
@@ -37,7 +36,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      home: HomeScreen()
+      // home: HomeScreen()
+      initialRoute: '/',
+      routes: {
+        '/':(context) => LoginScreen(),
+        '/register':(context) => RegisterScreen()
+      },
     );
   }
 }
