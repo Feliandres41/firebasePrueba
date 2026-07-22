@@ -93,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                 if (respuesta != null) {
                   print("Login exitoso");
+                  Navigator.pushReplacementNamed(context, '/home');
                 }
               } catch (e) {
                 print("Credenciales incorrectas");

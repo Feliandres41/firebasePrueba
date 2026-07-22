@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -92,6 +93,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     );
                 if (respuesta != null) {
                   print("Registro exitoso");
+                  //registro de datos manuales
+                  String uid = respuesta.user!.uid;
+                  await FirebaseFirestore.instance
+                      .collection('usuarios')
+                      .doc(uid)
+                      .set({
+                        'nombre': 'A',
+                        'edad': '20',
+                        'userId': uid,
+                        'estado': false, // por defecto empieza desconectado
+                      });
+                  Navigator.pushReplacementNamed(context, '/home');
                 }
               } catch (e) {
                 print("Credenciales incorrectas");
@@ -103,10 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 (states) => Colors.white,
               ),
             ),
-            child: Text(
-              "Iniciar sesion",
-              style: TextStyle(color: Colors.black),
-            ),
+            child: Text("Registrarse", style: TextStyle(color: Colors.black)),
           ),
           SizedBox(height: height * 0.02),
           Row(
